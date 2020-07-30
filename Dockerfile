@@ -18,6 +18,7 @@ RUN npm run build
 
 ## Start run section
 FROM nginx
+EXPOSE 80
 
 ## Copy build folder to nginx, look at documentation on docker hub
 COPY --from=builder /app/build /usr/share/nginx/html
