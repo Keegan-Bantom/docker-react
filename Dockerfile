@@ -1,11 +1,11 @@
 ##Specify as build stage
-FROM node:alpine AS builder
+FROM node:alpine
 
 ## Specify work directory
 WORKDIR '/app'
 
 ## Copy file to work directory
-COPY package.json .
+COPY package*.json ./
 
 ## Install npm
 RUN npm install
@@ -21,7 +21,7 @@ FROM nginx
 EXPOSE 80
 
 ## Copy build folder to nginx, look at documentation on docker hub
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
 
 
